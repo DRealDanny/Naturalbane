@@ -1,0 +1,29 @@
+{
+    "config": {
+        "whatsapp_link": "https:\/\/chat.whatsapp.com\/ExampleLink"
+    },
+    "images": {
+        "endoscopy": "assets\/endoscopy_1777846720.png",
+        "surgery_1": "assets\/surgery1.jpg",
+        "surgery_2": "assets\/surgery2.jpg",
+        "michael_toyin": "assets\/michael-profile.jpg",
+        "class_preview": "assets\/whatsapp-preview.jpg",
+        "program_mockup": "assets\/program-mockup.jpg"
+    },
+    "grids": {
+        "cases": [
+            "assets\/case1.jpg",
+            "assets\/case2.jpg",
+            "assets\/case3.jpg",
+            "assets\/case4.jpg",
+            "assets\/case5.jpg",
+            "assets\/case6.jpg"
+        ],
+        "testimonials": [
+            "assets\/t1.jpg",
+            "assets\/t2.jpg",
+            "assets\/t3.jpg",
+            "assets\/t4.jpg"
+        ]
+    }
+}
