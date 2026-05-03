@@ -535,3 +535,66 @@
   background-color: #A00D24; /* Slightly darker red on hover */
   transform: translateY(-3px); /* Little bounce effect */
 }
+
+/* --- LIGHTBOX ADDITION --- */
+.img-preview { 
+  cursor: zoom-in; 
+  transition: transform 0.2s ease; 
+}
+
+.img-preview:hover { 
+  transform: scale(1.01); 
+}
+
+/* Michael Photo Fix - Specifically ensures no clicks/interactivity */
+.michael-photo {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Lightbox Overlay Styling */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 85vh;
+}
+
+.lightbox-content img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 85vh;
+  border: 4px solid #fff;
+  display: block;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  color: #fff;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.lightbox-ui-hint {
+  color: #fff;
+  margin-top: 15px;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  opacity: 0.8;
+}
