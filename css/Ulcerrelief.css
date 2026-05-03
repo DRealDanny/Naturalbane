@@ -223,25 +223,16 @@
     opacity: 0.4;
   }
 
-  /* IMAGE PLACEHOLDER */
+  /* --- UPDATED IMAGE BLOCKS (CLEAN LOOK) --- */
   .image {
-    border: 2px dashed var(--ink);
-    padding: 56px 20px;
+    border: none;
+    padding: 0;
     text-align: center;
     margin: 32px 0;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 17px;
-    color: var(--ink-soft);
-    background: #FAFAFA;
+    background: transparent;
   }
   .image::before {
-    content: '⊡';
-    display: block;
-    font-size: 36px;
-    margin-bottom: 10px;
-    opacity: 0.4;
-    font-style: normal;
+    display: none; /* Removed placeholder icon */
   }
 
   /* ACTUAL IMAGE */
@@ -249,12 +240,12 @@
     margin: 32px 0;
     text-align: center;
   }
-  .photo img {
+  .photo img, .image img, .case-card img, .t-card img {
     width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
-    border: 2px solid var(--ink);
+    border: none; /* Removed solid border from actual images */
   }
   .photo figcaption {
     margin-top: 12px;
@@ -315,18 +306,20 @@
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    border: 3px solid var(--ink);
+    border: none solid var(--ink);
     margin: 0 auto 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink-soft);
-    text-align: center;
-    padding: 16px;
+    overflow: hidden;
     background: #FAFAFA;
+    pointer-events: none !important; /* Non-clickable logic[cite: 4] */
+    cursor: default !important;
+  }
+  .michael-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* CLASS LIST */
@@ -435,66 +428,26 @@
   .cta:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
   .cta svg { width: 24px; height: 24px; flex-shrink: 0; }
 
-  /* TESTIMONIALS */
-  .testimonials-title {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    text-align: center;
-    font-size: clamp(22px, 4.2vw, 30px);
-    margin: 60px 0 24px;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-  .testimonial-grid {
+  /* TESTIMONIALS & CASES GRID CLEANUP */
+  .testimonial-grid, .cases-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
     margin-top: 20px;
   }
-  .t-card {
+  .t-card, .case-card {
     aspect-ratio: 1 / 1;
-    border: 2px dashed var(--ink);
-    background: #FAFAFA;
+    border: none; /* Removed dashed border[cite: 4] */
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink-soft);
-    padding: 16px;
-  }
-
-  /* CASE PICTURES GRID (6 boxes) */
-  .cases-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 32px 0;
-  }
-  .case-card {
-    aspect-ratio: 1 / 1;
-    border: 2px dashed var(--ink);
-    background: #FAFAFA;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink-soft);
-    padding: 16px;
-    flex-direction: column;
-    gap: 6px;
+    overflow: hidden;
   }
   .case-card::before {
-    content: '⊡';
-    font-size: 28px;
-    opacity: 0.4;
-    font-style: normal;
+    display: none; /* Removed placeholder icon[cite: 4] */
   }
+
   @media (min-width: 600px) {
     .cases-grid { grid-template-columns: 1fr 1fr 1fr; }
   }
@@ -512,7 +465,7 @@
 
   /* --- SCROLL TO TOP BUTTON --- */
 #scrollTopBtn {
-  display: none; /* Hidden until you scroll down */
+  display: none;
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -526,14 +479,14 @@
   cursor: pointer;
   width: 50px;
   height: 50px;
-  border-radius: 50%; /* Makes it a perfect circle */
+  border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #scrollTopBtn:hover {
-  background-color: #A00D24; /* Slightly darker red on hover */
-  transform: translateY(-3px); /* Little bounce effect */
+  background-color: #A00D24;
+  transform: translateY(-3px);
 }
 
 /* --- LIGHTBOX ADDITION --- */
@@ -544,12 +497,6 @@
 
 .img-preview:hover { 
   transform: scale(1.01); 
-}
-
-/* Michael Photo Fix - Specifically ensures no clicks/interactivity */
-.michael-photo {
-  pointer-events: none !important;
-  cursor: default !important;
 }
 
 /* Lightbox Overlay Styling */
