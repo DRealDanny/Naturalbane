@@ -29,31 +29,36 @@ scrollTopBtn.addEventListener("click", () => {
   });
 });
 
-/* --- LIGHTBOX PREVIEW LOGIC --- */
+/* --- UPDATED LIGHTBOX LOGIC --- */
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
+const zoomBtn = document.getElementById("zoomBtn");
 const closeBtn = document.querySelector(".close-lightbox");
 
-// Logic to open the lightbox
+// 1. Open Lightbox
 document.querySelectorAll(".img-preview img").forEach(image => {
   image.addEventListener("click", () => {
+    lightbox.classList.remove("is-zoomed"); // Always reset zoom when opening
     lightbox.style.display = "flex";
     lightboxImg.src = image.src;
-    document.body.style.overflow = "hidden"; // Stops the page from scrolling behind the image
+    document.body.style.overflow = "hidden";
   });
 });
 
-// Logic to close the lightbox
+// 2. Toggle Zoom via SVG Button
+zoomBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // Prevents closing the lightbox when clicking the button
+  lightbox.classList.toggle("is-zoomed");
+});
+
+// 3. Close Function
 const closeLightbox = () => {
   lightbox.style.display = "none";
-  document.body.style.overflow = "auto"; // Re-enables page scroll
+  lightbox.classList.remove("is-zoomed");
+  document.body.style.overflow = "auto";
 };
 
-if (closeBtn) {
-  closeBtn.addEventListener("click", closeLightbox);
-}
-
-// Close if the user clicks the dark background area
+closeBtn.addEventListener("click", closeLightbox);
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) closeLightbox();
 });
