@@ -306,14 +306,14 @@
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    border: none solid var(--ink);
+    border: none; /* Removed stroke border[cite: 6] */
     margin: 0 auto 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     background: #FAFAFA;
-    pointer-events: none !important; /* Non-clickable logic[cite: 4] */
+    pointer-events: none !important; /* Non-clickable logic */
     cursor: default !important;
   }
   .michael-photo img {
@@ -428,6 +428,42 @@
   .cta:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
   .cta svg { width: 24px; height: 24px; flex-shrink: 0; }
 
+  /* TESTIMONIALS TITLE CONTROL */
+  .testimonials-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.2;
+    font-size: clamp(22px, 4.2vw, 30px);
+    
+    /* Centering the text */
+    text-align: center;
+    width: 100%;
+
+    /* Mobile Spacing Control (Base)[cite: 6] */
+    padding-top: 40px; 
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0;
+  }
+
+  /* Tablet Title Spacing */
+  @media (min-width: 768px) {
+    .testimonials-title {
+      padding-top: 60px;
+      padding-bottom: 30px;
+    }
+  }
+
+  /* Desktop Title Spacing */
+  @media (min-width: 1024px) {
+    .testimonials-title {
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+  }
+
   /* TESTIMONIALS & CASES GRID CLEANUP */
   .testimonial-grid, .cases-grid {
     display: grid;
@@ -437,7 +473,7 @@
   }
   .t-card, .case-card {
     aspect-ratio: 1 / 1;
-    border: none; /* Removed dashed border[cite: 4] */
+    border: none;
     background: transparent;
     display: flex;
     align-items: center;
@@ -445,7 +481,7 @@
     overflow: hidden;
   }
   .case-card::before {
-    display: none; /* Removed placeholder icon[cite: 4] */
+    display: none;
   }
 
   @media (min-width: 600px) {
@@ -511,7 +547,7 @@
   right: 20px;
   display: flex;
   align-items: center;
-  gap: 15px; /* Distance between Zoom and X */
+  gap: 15px; 
   z-index: 2200;
 }
 
@@ -551,7 +587,7 @@
   max-width: 90%;
   max-height: 80vh;
   transition: transform 0.3s ease;
-  overflow: hidden; /* Keeps zoom contained */
+  overflow: hidden; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -567,8 +603,8 @@
 
 /* When the image is zoomed in */
 .lightbox.is-zoomed img {
-  transform: scale(2); /* Zoom depth */
-  cursor: move; /* Shows user they can "move" the image */
+  transform: scale(2); 
+  cursor: move; 
 }
 
 /* RESPONSIVE ICON SIZES */
@@ -576,4 +612,96 @@
   .lightbox-controls { top: 10px; right: 10px; gap: 10px; }
   .control-btn svg { width: 28px; height: 28px; }
   .close-lightbox { font-size: 40px; }
+}
+
+/* --- OVERFLOW PROTECTION --- */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden; /* Keeps the screen from shifting side-to-side */
+  position: relative;
+}
+
+/* --- ATMOSPHERIC EDGE FLARES --- */
+body::before,
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px; 
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(35px);
+  opacity: 0.12;
+  animation: flare-pulse 8s infinite alternate ease-in-out;
+}
+
+@media (min-width: 768px) {
+  body::before, body::after { width: 120px; filter: blur(50px); }
+}
+
+body::before {
+  left: 0;
+  background-image: radial-gradient(circle at 0% 50%, var(--red) 0%, transparent 70%);
+  background-size: 100% 1200px;
+  background-repeat: repeat-y;
+}
+
+body::after {
+  right: 0;
+  background-image: radial-gradient(circle at 100% 50%, var(--red) 0%, transparent 70%);
+  background-size: 100% 1200px;
+  background-repeat: repeat-y;
+  background-position: 0 600px;
+}
+
+/* --- SCROLL TO TOP BUTTON (CIRCLE & NO STROKE) --- */
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 25px;
+  right: 20px;
+  z-index: 9999;
+  background-color: var(--red);
+  color: white;
+  
+  /* The Shape Logic */
+  border: none;           /* No stroke/border */
+  border-radius: 50%;     /* Makes it a perfect circle */
+  
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+#scrollTopBtn:hover {
+  transform: translateY(-5px);
+  background-color: #A00D24;
+}
+
+@media (max-width: 480px) {
+  #scrollTopBtn {
+    bottom: 20px;
+    right: 15px;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+}
+
+/* --- MICHAEL PHOTO (RE-CONFIRMED NO STROKE) --- */
+.michael-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: none !important; /* No border stroke */
+  margin: 0 auto 32px;
+  overflow: hidden;
+  background: #FAFAFA;
 }
