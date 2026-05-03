@@ -1,6 +1,6 @@
 /* 
-  ULCER RELIEF MASTERCLASS - PREMIUM HERO ENTRANCE (V3)
-  Style: Editorial Masked Reveal with 3D Depth.
+  ULCER RELIEF MASTERCLASS - REFINED SEQUENTIAL REVEAL (V5)
+  Targeting: Individual classes for perfect Hero timing.
 */
 
 window.addEventListener('load', function() {
@@ -10,116 +10,63 @@ window.addEventListener('load', function() {
 
     let mm = gsap.matchMedia();
 
-    // --- VISIBILITY BACKUP ---
-    // Only hides content if GSAP is active and running
-    gsap.set(".hero h1, .hero .subhead, .scroll-nudge", { opacity: 0 });
+    // --- VISIBILITY BACKUP: Only hide if GSAP is running ---
+    gsap.set(".hero-title, .hero-subhead, .hero-nudge", { opacity: 0 });
     gsap.set(".gsap-reveal", { opacity: 0, y: 30 });
-    gsap.set(".gsap-silk img", { opacity: 0, scale: 1.1 });
+    gsap.set(".gsap-silk img", { opacity: 0, scale: 1.05 });
 
-    // --- RESPONSIVE ANIMATIONS ---
+    // --- DESKTOP & TABLET LOGIC ---
     mm.add("(min-width: 768px)", () => {
         
-        // THE HERO "SILK" TIMELINE
         const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
-        heroTl.fromTo(".hero h1", 
-            { 
-                clipPath: "inset(100% 0% 0% 0%)", 
-                y: 100, 
-                opacity: 0,
-                scale: 1.05
-            }, 
-            { 
-                clipPath: "inset(0% 0% 0% 0%)", 
-                y: 0, 
-                opacity: 1, 
-                scale: 1,
-                duration: 2,
-                force3D: true 
-            }
+        // 1. Title reveals with mask
+        heroTl.fromTo(".hero-title", 
+            { clipPath: "inset(100% 0% 0% 0%)", y: 80, opacity: 0 }, 
+            { clipPath: "inset(0% 0% 0% 0%)", y: 0, opacity: 1, duration: 2.2, force3D: true }
         )
-        .fromTo(".hero .subhead", 
-            { 
-                y: 40, 
-                opacity: 0 
-            }, 
-            { 
-                y: 0, 
-                opacity: 1, 
-                duration: 1.5 
-            }, 
-            "-=1.4"
+        // 2. Subhead reveals slightly before title finishes
+        .fromTo(".hero-subhead", 
+            { y: 30, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 1.8 }, 
+            "-=1.2" 
         )
-        .fromTo(".scroll-nudge", 
-            { 
-                y: -20, 
-                opacity: 0 
-            }, 
-            { 
-                y: 0, 
-                opacity: 1, 
-                duration: 1 
-            }, 
-            "-=1.0"
+        // 3. Nudge icon fades in at the very bottom[cite: 2]
+        .fromTo(".hero-nudge", 
+            { opacity: 0, scale: 0.9 }, 
+            { opacity: 1, scale: 1, duration: 1 }, 
+            "-=0.8"
         );
 
-        // SILK IMAGE REVEALS
+        // Silk Image Reveals (Clip-path mask)[cite: 2]
         gsap.utils.toArray(".gsap-silk img").forEach(img => {
             gsap.to(img, {
                 scrollTrigger: { 
                     trigger: img, 
-                    start: "top 85%", 
+                    start: "top 88%", 
                     toggleActions: "play none none none" 
                 },
-                opacity: 1,
-                scale: 1,
-                clipPath: "inset(0% 0% 0% 0%)",
-                duration: 2,
-                ease: "expo.inOut"
+                opacity: 1, scale: 1, clipPath: "inset(0% 0% 0% 0%)",
+                duration: 2, ease: "expo.inOut"
             });
         });
     });
 
+    // --- MOBILE LOGIC ---
     mm.add("(max-width: 767px)", () => {
         
-        // SNAPPY MOBILE HERO[cite: 3]
         const heroTl = gsap.timeline();
 
-        heroTl.fromTo(".hero h1", 
-            { 
-                y: 50, 
-                opacity: 0 
-            }, 
-            { 
-                y: 0, 
-                opacity: 1, 
-                duration: 1.2, 
-                ease: "power3.out" 
-            }
-        )
-        .fromTo(".hero .subhead", 
-            { 
-                y: 20, 
-                opacity: 0 
-            }, 
-            { 
-                y: 0, 
-                opacity: 1, 
-                duration: 1 
-            }, 
-            "-=0.9"
-        );
+        // Sequential Fade-Up for Mobile[cite: 2]
+        heroTl.fromTo(".hero-title", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "power2.out" })
+              .fromTo(".hero-subhead", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, "-=0.8")
+              .fromTo(".hero-nudge", { opacity: 0 }, { opacity: 1, duration: 0.8 }, "-=0.6");
 
-        // MOBILE IMAGE FADE (Lighter on GPU)[cite: 3]
+        // Mobile Image Fade
         gsap.utils.toArray(".gsap-silk img").forEach(img => {
             gsap.to(img, {
-                scrollTrigger: { 
-                    trigger: img, 
-                    start: "top 90%" 
-                },
-                opacity: 1,
-                scale: 1,
-                duration: 1.2
+                scrollTrigger: { trigger: img, start: "top 92%" },
+                opacity: 1, duration: 1.2
             });
         });
     });
@@ -127,28 +74,14 @@ window.addEventListener('load', function() {
     // --- SHARED TEXT REVEALS ---
     gsap.utils.toArray(".gsap-reveal").forEach(el => {
         gsap.to(el, {
-            scrollTrigger: { 
-                trigger: el, 
-                start: "top 92%", 
-                toggleActions: "play none none none" 
-            },
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out"
+            scrollTrigger: { trigger: el, start: "top 94%", toggleActions: "play none none none" },
+            y: 0, opacity: 1, duration: 1.2, ease: "power2.out"
         });
     });
 
-    // STAGGERED LISTS[cite: 2]
+    // Staggered List Items[cite: 2]
     gsap.to(".signs li, .class-list li", {
-        scrollTrigger: { 
-            trigger: ".signs, .class-list", 
-            start: "top 80%" 
-        },
-        x: 0,
-        opacity: 1,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "power2.out"
+        scrollTrigger: { trigger: ".signs, .class-list", start: "top 85%" },
+        x: 0, opacity: 1, stagger: 0.12, duration: 0.8, ease: "power2.out"
     });
 });
