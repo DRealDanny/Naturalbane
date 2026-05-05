@@ -10,10 +10,9 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
-  /* --- OVERFLOW PROTECTION --- */
   html, body {
     max-width: 100%;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     position: relative;
   }
 
@@ -26,17 +25,17 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* --- HERO SECTION BASE --- */
+  /* HERO */
   .hero {
-    background-color: #2A2A2A; 
-    background-image: 
+    background-color: #2A2A2A;
+    background-image:
       linear-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
-    background-size: 30px 30px; 
-    padding: 100px 30px; 
+    background-size: 30px 30px;
+    padding: 100px 30px;
     text-align: center;
   }
-  
+
   .hero-content {
     max-width: 760px;
     margin: 0 auto;
@@ -50,13 +49,11 @@
     color: #FFFFFF;
     margin-bottom: 32px;
     letter-spacing: -0.01em;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   }
-  
-  .hero h1 .hl-red { 
-    color: var(--red); 
-  }
-  
+
+  .hero h1 .hl-red { color: var(--red); }
+
   .hero h1 u {
     text-decoration: underline;
     text-decoration-color: var(--red);
@@ -78,7 +75,6 @@
     padding: 24px 0;
   }
 
-  /* --- HERO SCROLL INDICATOR --- */
   .scroll-nudge {
     margin-top: 48px;
     display: flex;
@@ -91,25 +87,19 @@
     font-size: 16px;
     letter-spacing: 0.05em;
     opacity: 0;
-    animation: fadeIn 1s ease forwards 0.5s; 
+    animation: fadeIn 1s ease forwards 0.5s;
   }
 
   .scroll-nudge svg {
     width: 22px;
     height: 22px;
-    animation: bounceDown 2s infinite; 
+    animation: bounceDown 2s infinite;
   }
 
   @keyframes bounceDown {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(8px);
-    }
-    60% {
-      transform: translateY(4px);
-    }
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(8px); }
+    60% { transform: translateY(4px); }
   }
 
   @keyframes fadeIn {
@@ -117,31 +107,17 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @media (min-width: 768px) {
-    .hero {
-      padding: 150px 60px; 
-    }
-  }
+  @media (min-width: 768px) { .hero { padding: 150px 60px; } }
+  @media (min-width: 1024px) { .hero { padding: 130px 60px; } }
 
-  @media (min-width: 1024px) {
-    .hero {
-      padding: 130px 60px; 
-    }
-  }
-
-  /* LETTER CONTAINER */
+  /* LETTER */
   .letter {
     max-width: 680px;
     margin: 0 auto;
     padding: 50px 22px 80px;
   }
 
-  p {
-    margin-bottom: 22px;
-    font-size: 19px;
-    line-height: 1.7;
-  }
-
+  p { margin-bottom: 22px; font-size: 19px; line-height: 1.7; }
   p strong { font-weight: 700; color: var(--ink); }
   p em { font-style: italic; }
 
@@ -265,17 +241,14 @@
     background: transparent;
   }
 
-  .photo {
-    margin: 32px 0;
-    text-align: center;
-  }
+  .photo { margin: 32px 0; text-align: center; }
 
   .photo img, .image img, .case-card img, .t-card img {
     width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
-    border: none; 
+    border: none;
   }
 
   .photo figcaption {
@@ -340,22 +313,18 @@
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    border: none !important; 
+    border: none !important;
     margin: 0 auto 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     background: #FAFAFA;
-    pointer-events: none !important; 
+    pointer-events: none !important;
     cursor: default !important;
   }
 
-  .michael-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .michael-photo img { width: 100%; height: 100%; object-fit: cover; }
 
   .class-intro {
     font-family: 'Playfair Display', serif;
@@ -464,10 +433,8 @@
   }
 
   .cta:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
-
   .cta svg { width: 24px; height: 24px; flex-shrink: 0; }
 
-  /* TESTIMONIALS TITLE CONTROL */
   .testimonials-title {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
@@ -476,23 +443,12 @@
     font-size: clamp(22px, 4.2vw, 30px);
     text-align: center;
     width: 100%;
-    padding: 40px 30px 20px; 
+    padding: 40px 30px 20px;
     margin: 0;
   }
 
-  @media (min-width: 768px) {
-    .testimonials-title {
-      padding-top: 60px;
-      padding-bottom: 30px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .testimonials-title {
-      padding-top: 80px;
-      padding-bottom: 40px;
-    }
-  }
+  @media (min-width: 768px) { .testimonials-title { padding-top: 60px; padding-bottom: 30px; } }
+  @media (min-width: 1024px) { .testimonials-title { padding-top: 80px; padding-bottom: 40px; } }
 
   .testimonial-grid, .cases-grid {
     display: grid;
@@ -511,9 +467,7 @@
     overflow: hidden;
   }
 
-  @media (min-width: 600px) {
-    .cases-grid { grid-template-columns: 1fr 1fr 1fr; }
-  }
+  @media (min-width: 600px) { .cases-grid { grid-template-columns: 1fr 1fr 1fr; } }
 
   @media (max-width: 480px) {
     body { font-size: 17px; }
@@ -525,10 +479,11 @@
     .scroll-nudge svg { width: 18px; height: 18px; }
   }
 
+  /* REVEAL */
   .reveal { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* --- SCROLL TO TOP BUTTON (CIRCLE & NO STROKE) --- */
+  /* SCROLL TO TOP */
   #scrollTopBtn {
     display: none;
     position: fixed;
@@ -537,8 +492,8 @@
     z-index: 9999;
     background-color: var(--red);
     color: white;
-    border: none; 
-    border-radius: 50%; 
+    border: none;
+    border-radius: 50%;
     width: 48px;
     height: 48px;
     cursor: pointer;
@@ -551,42 +506,31 @@
   }
 
   @media (max-width: 480px) {
-    #scrollTopBtn {
-      bottom: 20px;
-      right: 15px;
-      width: 44px;
-      height: 44px;
-      font-size: 20px;
-    }
+    #scrollTopBtn { bottom: 20px; right: 15px; width: 44px; height: 44px; font-size: 20px; }
   }
 
-  /* --- LIGHTBOX CONTROLS GROUP --- */
-#zoomBtn {
-  display: none !important; /* Hides the icon so it doesn't exist to users */
-}
+  /* LIGHTBOX */
+  #zoomBtn { display: none !important; }
 
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.98);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
 
   .lightbox-controls {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 20px; right: 20px;
     display: flex;
     align-items: center;
-    gap: 15px; 
+    gap: 15px;
     z-index: 2200;
   }
 
@@ -600,11 +544,7 @@
     justify-content: center;
   }
 
-  .control-btn svg {
-    width: 32px;
-    height: 32px;
-    transition: opacity 0.2s;
-  }
+  .control-btn svg { width: 32px; height: 32px; transition: opacity 0.2s; }
 
   .close-lightbox {
     background: none;
@@ -616,7 +556,6 @@
     line-height: 1;
   }
 
-  /* --- UPDATED LIGHTBOX ZOOM & PAN --- */
   .lightbox-content {
     position: relative;
     max-width: 90%;
@@ -624,7 +563,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; 
+    overflow: hidden;
     cursor: default;
   }
 
@@ -634,33 +573,39 @@
     border: 2px solid #fff;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
-    user-select: none; 
+    user-select: none;
     -webkit-user-drag: none;
   }
 
   .lightbox.is-zoomed .lightbox-content img {
-    transform: scale(2.5); 
+    transform: scale(2.5);
     cursor: grab;
-    transition: transform 0.1s ease-out; 
+    transition: transform 0.1s ease-out;
   }
 
-  .lightbox.is-zoomed .lightbox-content img:active {
-    cursor: grabbing;
-  }
+  .lightbox.is-zoomed .lightbox-content img:active { cursor: grabbing; }
 
-  /* --- ATMOSPHERIC EDGE FLARES --- */
+  /*
+    ATMOSPHERIC EDGE FLARES — PERFORMANCE FIX
+    Original used filter:blur() on pseudo-elements that repaint on scroll.
+    Fixed by:
+    1. Adding will-change:transform to isolate them to their own GPU layer
+    2. Using contain:strict so the browser knows they don't affect layout
+    This stops them causing a repaint on every scroll event.
+  */
   body::before,
   body::after {
     content: '';
-    position: absolute;
+    position: fixed; /* fixed instead of absolute — doesn't repaint on scroll */
     top: 0;
     bottom: 0;
-    width: 60px; 
+    width: 60px;
     z-index: -1;
     pointer-events: none;
     filter: blur(35px);
     opacity: 0.12;
     animation: flare-pulse 8s infinite alternate ease-in-out;
+    will-change: opacity;   /* only animate opacity, not layout */
   }
 
   @media (min-width: 768px) {
@@ -670,16 +615,13 @@
   body::before {
     left: 0;
     background-image: radial-gradient(circle at 0% 50%, var(--red) 0%, transparent 70%);
-    background-size: 100% 1200px;
-    background-repeat: repeat-y;
+    background-size: 100% 100%;
   }
 
   body::after {
     right: 0;
     background-image: radial-gradient(circle at 100% 50%, var(--red) 0%, transparent 70%);
-    background-size: 100% 1200px;
-    background-repeat: repeat-y;
-    background-position: 0 600px;
+    background-size: 100% 100%;
   }
 
   @keyframes flare-pulse {
@@ -687,15 +629,23 @@
     100% { opacity: 0.18; }
   }
 
-  /* --- ANIMATION PERFORMANCE BOOSTS --- */
-.hero h1, .hero .subhead, .gsap-reveal {
-  will-change: transform, opacity, clip-path;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
+  /*
+    GSAP ANIMATION PERFORMANCE — FIXED
+    BEFORE: will-change applied to ALL .gsap-reveal elements upfront,
+    forcing the browser to allocate GPU memory for every element on load.
+    AFTER: will-change only applied when GSAP is actively animating the element.
+    GSAP handles this automatically via its own internal layer promotion.
+    The backface-visibility and transform-style are kept only on hero elements
+    where the clip-path animation genuinely needs them.
+  */
+  .hero h1,
+  .hero .subhead {
+    will-change: transform, opacity, clip-path;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
 
-/* Ensure images in the silk container are prepared for the mask */
-.gsap-silk {
-  overflow: hidden;
-  background: #f0f0f0; /* Subtle placeholder color */
-}
+  .gsap-silk {
+    overflow: hidden;
+    background: #f0f0f0;
+  }

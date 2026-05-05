@@ -3,15 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/png" href="assets/naturalbane-icon.png">
 <title>Ulcer Relief Masterclass</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="assets/naturalbane-icon.png">
+
+<!--
+  FONT LOADING — OPTIMIZED
+  1. preconnect warms up the connection early
+  2. font-display=swap means text shows immediately in fallback font,
+     then swaps to the web font when it arrives — no invisible text
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
-<!-- GSAP CDNs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<!-- Unique CSS Link in subfolder -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+</noscript>
+
+<!--
+  GSAP — loaded with defer so it never blocks HTML parsing or first paint.
+  defer means: download in background, execute after HTML is parsed.
+-->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 <link rel="stylesheet" href="css/Ulcerrelief.css">
 </head>
 <body>
@@ -84,15 +100,19 @@
   </div>
 
   <!--
-    IMAGE 1: Endoscopy photo
-    CMS KEY:  images.endoscopy
-    Fallback: matches current content.json value
+    IMAGE 1: Endoscopy — ABOVE THE FOLD / EARLY IN PAGE
+    fetchpriority="high" tells browser to download this first
+    No lazy loading — it needs to show as fast as possible
+    data-cms still works — the injector script updates it on load
   -->
   <figure class="photo img-preview gsap-silk">
     <img
       data-cms="images.endoscopy"
       src="assets/endoscopy_1777876181.jpg"
       alt="Endoscopy showing a bleeding stomach ulcer"
+      width="680"
+      height="510"
+      fetchpriority="high"
     >
     <figcaption>Endoscopy — a bleeding stomach</figcaption>
   </figure>
@@ -112,14 +132,17 @@
 
   <!--
     IMAGE 2: Cancer of the stomach
-    CMS KEY:  images.surgery_1
-    Fallback: matches current content.json value
+    loading="lazy" — only downloads when user scrolls near it
+    width + height prevent layout shift (CLS)
   -->
   <div class="image img-preview gsap-silk">
     <img
       data-cms="images.surgery_1"
       src="assets/surgery_1_1777877166.jpg"
       alt="Cancer of the stomach"
+      width="680"
+      height="510"
+      loading="lazy"
     >
   </div>
 
@@ -131,16 +154,15 @@
     <p>"Your mother has only <span class="red">five days to live.</span> The cancer cells have already spread to her liver, her lungs, and other vital parts of her body. There's nothing more we can do."</p>
   </div>
 
-  <!--
-    IMAGE 3: Spread of cancer
-    CMS KEY:  images.surgery_2
-    Fallback: matches current content.json value
-  -->
+  <!-- IMAGE 3: Spread of cancer -->
   <div class="image img-preview gsap-silk">
     <img
       data-cms="images.surgery_2"
       src="assets/surgery_2_1777877190.jpg"
       alt="Spread of cancer all over her body"
+      width="680"
+      height="510"
+      loading="lazy"
     >
   </div>
 
@@ -172,29 +194,25 @@
 
   <h2 class="section-heading gsap-reveal">Can This Ulcer Really Cause Stomach Cancer Or Is This Man Capping?</h2>
 
-  <!--
-    GRID: Case Studies (6 images)
-    CMS KEYS: grids.cases.0 → grids.cases.5
-    Fallbacks: match current content.json values
-  -->
+  <!-- GRID: Case Studies — all lazy loaded, below the fold -->
   <div class="cases-grid">
     <div class="case-card img-preview gsap-silk">
-      <img data-cms="grids.cases.0" src="assets/cases_0_1777876641.jpg" alt="Case 1">
+      <img data-cms="grids.cases.0" src="assets/cases_0_1777876641.jpg" alt="Case 1" width="300" height="300" loading="lazy">
     </div>
     <div class="case-card img-preview gsap-silk">
-      <img data-cms="grids.cases.1" src="assets/cases_1_1777876671.jpg" alt="Case 2">
+      <img data-cms="grids.cases.1" src="assets/cases_1_1777876671.jpg" alt="Case 2" width="300" height="300" loading="lazy">
     </div>
     <div class="case-card img-preview gsap-silk">
-      <img data-cms="grids.cases.2" src="assets/cases_2_1777876680.jpg" alt="Case 3">
+      <img data-cms="grids.cases.2" src="assets/cases_2_1777876680.jpg" alt="Case 3" width="300" height="300" loading="lazy">
     </div>
     <div class="case-card img-preview gsap-silk">
-      <img data-cms="grids.cases.3" src="assets/cases_3_1777876703.jpg" alt="Case 4">
+      <img data-cms="grids.cases.3" src="assets/cases_3_1777876703.jpg" alt="Case 4" width="300" height="300" loading="lazy">
     </div>
     <div class="case-card img-preview gsap-silk">
-      <img data-cms="grids.cases.4" src="assets/cases_4_1777876712.jpg" alt="Case 5">
+      <img data-cms="grids.cases.4" src="assets/cases_4_1777876712.jpg" alt="Case 5" width="300" height="300" loading="lazy">
     </div>
     <div class="case-card img-preview gsap-silk">
-      <img data-cms="grids.cases.5" src="assets/cases_5_1777876720.jpg" alt="Case 6">
+      <img data-cms="grids.cases.5" src="assets/cases_5_1777876720.jpg" alt="Case 6" width="300" height="300" loading="lazy">
     </div>
   </div>
 
@@ -216,17 +234,15 @@
 
   <h2 class="michael-name gsap-reveal">My Name Is Michael Toyin</h2>
 
-  <!--
-    IMAGE: Michael Toyin profile photo
-    CMS KEY:  images.michael_toyin
-    Fallback: matches current content.json value
-    NOTE: Not clickable by design — no img-preview class
-  -->
+  <!-- Michael photo — not clickable, lazy loaded -->
   <div class="michael-photo gsap-reveal">
     <img
       data-cms="images.michael_toyin"
       src="assets/michael_toyin_1777876589.jpg"
       alt="Michael Toyin"
+      width="180"
+      height="180"
+      loading="lazy"
     >
   </div>
 
@@ -240,16 +256,15 @@
 
   <p class="gsap-reveal">The second thing they told me… is exactly what I'll be sharing with you in my <span class="red">FREE WhatsApp Class.</span></p>
 
-  <!--
-    IMAGE 4: WhatsApp class preview
-    CMS KEY:  images.class_preview
-    Fallback: matches current content.json value
-  -->
+  <!-- IMAGE 4: WhatsApp class preview -->
   <div class="image img-preview gsap-silk">
     <img
       data-cms="images.class_preview"
-      src="assets/class_preview_1777877634.jpg"
+      src="assets/class_preview_1777895748.jpg"
       alt="Free WhatsApp Class"
+      width="680"
+      height="510"
+      loading="lazy"
     >
   </div>
 
@@ -272,16 +287,15 @@
     <div class="program">✅ The Complete Ulcer Relief Program</div>
   </div>
 
-  <!--
-    IMAGE 5: Program mockup/preview
-    CMS KEY:  images.program_mockup
-    Fallback: matches current content.json value
-  -->
+  <!-- IMAGE 5: Program mockup -->
   <div class="image img-preview gsap-silk">
     <img
       data-cms="images.program_mockup"
       src="assets/program_mockup_1777893492.jpg"
       alt="The program preview"
+      width="680"
+      height="510"
+      loading="lazy"
     >
   </div>
 
@@ -290,47 +304,41 @@
     <div class="answer">It's 100% FREE.</div>
   </div>
 
-  <!-- CTA Button 1 — href injected by CMS fetch script -->
   <div class="cta-wrap gsap-reveal">
     <a href="#" class="cta cms-whatsapp-link">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+      <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
       Join the Free Class
     </a>
   </div>
 
   <h2 class="testimonials-title gsap-reveal">What people are saying about the class</h2>
 
-  <!--
-    GRID: Testimonials (4 images)
-    CMS KEYS: grids.testimonials.0 → grids.testimonials.3
-    Fallbacks: match current content.json values
-  -->
+  <!-- GRID: Testimonials — all lazy loaded -->
   <div class="testimonial-grid">
     <div class="t-card img-preview gsap-silk">
-      <img data-cms="grids.testimonials.0" src="assets/testimonials_0_1777877522.jpg" alt="Testimonial 1">
+      <img data-cms="grids.testimonials.0" src="assets/testimonials_0_1777877522.jpg" alt="Testimonial 1" width="300" height="300" loading="lazy">
     </div>
     <div class="t-card img-preview gsap-silk">
-      <img data-cms="grids.testimonials.1" src="assets/testimonials_1_1777877549.jpg" alt="Testimonial 2">
+      <img data-cms="grids.testimonials.1" src="assets/testimonials_1_1777877549.jpg" alt="Testimonial 2" width="300" height="300" loading="lazy">
     </div>
     <div class="t-card img-preview gsap-silk">
-      <img data-cms="grids.testimonials.2" src="assets/testimonials_2_1777877554.jpg" alt="Testimonial 3">
+      <img data-cms="grids.testimonials.2" src="assets/testimonials_2_1777877554.jpg" alt="Testimonial 3" width="300" height="300" loading="lazy">
     </div>
     <div class="t-card img-preview gsap-silk">
-      <img data-cms="grids.testimonials.3" src="assets/testimonials_3_1777877560.jpg" alt="Testimonial 4">
+      <img data-cms="grids.testimonials.3" src="assets/testimonials_3_1777877560.jpg" alt="Testimonial 4" width="300" height="300" loading="lazy">
     </div>
   </div>
 
-  <!-- CTA Button 2 — href injected by CMS fetch script -->
   <div class="cta-wrap gsap-reveal" style="margin-top: 50px;">
     <a href="#" class="cta cms-whatsapp-link">
-      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+      <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
       Join the Free Class
     </a>
   </div>
 
 </div>
 
-<!-- Lightbox Overlay -->
+<!-- Lightbox -->
 <div id="lightbox" class="lightbox">
   <div class="lightbox-controls">
     <button id="zoomBtn" class="control-btn" title="Zoom In/Out">
@@ -348,10 +356,13 @@
   </div>
 </div>
 
-<!-- Scroll to Top Button -->
 <button id="scrollTopBtn" title="Go to top">↑</button>
 
-<!-- CMS CONTENT INJECTOR — runs before Ulcerrelief.js and Ulcer-animation.js -->
+<!--
+  CMS CONTENT INJECTOR
+  FIX: Only updates src if the JSON value differs from what's already set.
+  This prevents the browser downloading the same image twice.
+-->
 <script>
   fetch('content.json')
     .then(function(res) {
@@ -360,7 +371,7 @@
     })
     .then(function(cms) {
 
-      // 1. UPDATE ALL IMAGES
+      // Update images — skip if the path is already correct (prevents double-download)
       document.querySelectorAll('[data-cms]').forEach(function(el) {
         var keys  = el.dataset.cms.split('.');
         var value = cms;
@@ -368,27 +379,26 @@
           if (value == null) break;
           value = value[keys[i]];
         }
-        if (value && typeof value === 'string') {
+        if (value && typeof value === 'string' && !el.src.endsWith(value)) {
           el.src = value;
         }
       });
 
-      // 2. UPDATE WHATSAPP LINKS
+      // Update WhatsApp links
       var whatsappLink = cms.config && cms.config.whatsapp_link;
       if (whatsappLink) {
         document.querySelectorAll('.cms-whatsapp-link').forEach(function(a) {
           a.href = whatsappLink;
         });
       }
-
     })
     .catch(function(err) {
       console.warn('CMS fetch failed, using fallback content.', err);
     });
 </script>
 
-<script src="js/Ulcerrelief.js"></script>
-<script src="js/Ulcer-animation.js"></script>
+<script defer src="js/Ulcerrelief.js"></script>
+<script defer src="js/Ulcer-animation.js"></script>
 
 </body>
 </html>
